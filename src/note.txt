@@ -1,0 +1,38 @@
+- squash commits (Github)
+- dynamic css classes and apply when changing the staus of the tasks (one-way-binding)
+- 2-way-binding 
+- navigation guards
+
+- CRUD
+
+Project
+. create
+. Read
+. update
+. Delete
+
+Columns  // version 2 
+. create
+. Read
+. update
+. Delete
+
+
+Tasks
+. create
+. Read
+. update
+. Delete
+
+
+User
+. create
+. Read
+. update
+. Delete
+
+Team
+. create
+. Read
+. update
+. Delete

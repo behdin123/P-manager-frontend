@@ -1,0 +1,217 @@
+<template>
+  <header>
+    <img class="logo" src="@/assets/logo.png" />
+    <div class="wrapper">
+      <!-- Navigation -->
+      <nav>
+
+        <div class="nav-links">
+          <RouterLink to="/">Frontpage</RouterLink>
+          <RouterLink to="/Home">Home</RouterLink>
+          <RouterLink to="/about">About</RouterLink>
+        </div>
+
+        <button @click="toggleModal">Share</button>
+        <ShareModal v-model="modelValue" />
+
+        <!-- login & register & logout -->
+        <div class="login-div">
+          <login-component />
+        </div>
+
+        <label class="switch">
+          <input @click="toggleDarkMode" type="checkbox"/>
+          <span class="slider round"></span>
+        </label>
+
+      </nav>
+    </div>
+  </header>
+</template>
+
+<script setup>
+import { RouterLink } from 'vue-router';
+import LoginComponent from './loginComponent.vue';
+import ShareModal from './ShareProjectComponent.vue';
+import { ref, defineProps, defineExpose } from 'vue';
+
+const components = {
+  LoginComponent,
+  ShareModal,
+};
+
+const props = defineProps({
+  title: {
+    type: Boolean,
+    required: false,
+  },
+  toggleDarkMode: Function,
+});
+
+
+const modelValue = ref(false);
+
+const toggleModal = () => {
+  modelValue.value = !modelValue.value;
+};
+
+defineExpose({
+  components,
+});
+
+
+</script>
+
+
+
+
+<style lang="scss">
+@import "@/assets/global.scss";
+
+nav{
+  position: relative;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 31%;
+  left: 95%;
+  right: 0;
+  bottom: 0;
+  background-color: var(--quaternary-color);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-hover-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #D9C4A9;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+  width: 4.7%;
+  height: 34%;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.login-div{
+  margin-right: 110px;
+}
+
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  font-size: 13px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+  z-index: 999;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.nav-links {
+  margin-right: 50px;
+}
+
+header a {
+  position: relative;
+  color: var(--tertiary-color);
+  text-decoration: none;
+
+}
+
+a:hover {
+  color: var(--tertiary-color);
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--tertiary-color);
+  transform: scaleX(0);
+  transition: transform 0.2s ease-in-out;
+}
+
+a:hover::before {
+  transform: scaleX(1);
+  color: var(--tertiary-color);
+}
+
+.logo {
+  display: block;
+  width: 80px;
+  height: auto;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+}
+</style>
