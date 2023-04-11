@@ -11,8 +11,10 @@ export {
   closePopup,
   submitLogin,
   submitRegister,
+  submitLogout,
   errorMessage,
   successMessage,
+  isLoggedIn,
   loginUsername,
   loginPassword,
   registerUsername,
@@ -139,6 +141,7 @@ const isLoginFormValid = (username, password) => {
   return true;
 };
 
+const isLoggedIn = ref(false);
 
 const loginUsername = ref('');
 const loginPassword = ref('');
@@ -160,11 +163,12 @@ async function submitLogin() {
         expires: 1, // 1 day
       });
 
-      
+      // Show success message
+      successMessage.value = "You're successfully logged in";
 
-      /* // Redirect to another page, e.g., a dashboard
-      const router = useRouter();
-      router.push('/dashboard'); */
+      // Set isLoggedIn to true
+      isLoggedIn.value = true;
+      
 
     } catch (error) {
       // Show error message
@@ -180,6 +184,31 @@ async function submitLogin() {
   else {
     displayError(validationResult);
   }
+}
+
+
+async function submitLogout() {
+
+  // Remove the token from the cookie
+  Cookies.remove('jwt');
+
+  // Set isLoggedIn to false
+  isLoggedIn.value = false;
+
+  // Clear the loginUsername and loginPassword
+  loginUsername.value = '';
+  loginPassword.value = '';
+
+  // Do not show success message
+  successMessage.value = "";
+
+  // Redirect to login page or another appropriate page
+  const router = useRouter();
+  router.push('/login');
+
+  // Optional: Show a success message
+  successMessage.value = "You've successfully logged out!";
+
 }
 
 

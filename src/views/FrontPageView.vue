@@ -4,7 +4,7 @@
             <div class="first-section">
                 <div data-aos="fade-right" data-aos-duration="1000" class="welcome-page-header">
                     <h1>Welcome to P-Manager</h1>
-                    <p>Our solution for your project management</p>
+                    <p class="Slogan">Our solution for your project management</p>
                 </div>
                 <div data-aos="fade-right" data-aos-delay="500" data-aos-duration="1000" data-aos-easing="ease-in-sine"
                     class="welcome-page-description">
@@ -47,6 +47,10 @@ import { openPopup } from '../modules/login.js';
     align-content: center;
 }
 
+.Slogan{
+    margin-bottom: 15px;
+}
+
 .first-section {
     display: flex;
     flex-direction: column;
@@ -71,7 +75,7 @@ import { openPopup } from '../modules/login.js';
 
 .welcome-page-header h1 {
     font-size: 3.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 45px;
 }
 
 .welcome-page-header p {

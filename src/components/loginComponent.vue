@@ -1,6 +1,6 @@
 <template>
   <div class="login-entry-div">
-    <div class="entry">
+    <div v-if="!isLoggedIn" class="entry">
       <a class="open-popup" @click="openPopup(1)"><b>Login</b></a>
       &nbsp; or &nbsp;
       <a class="open-popup" @click="openPopup(2)"><b>Sign up</b></a>
@@ -8,8 +8,8 @@
 
     <div class="separator"></div>
 
-    <div class="entry">
-      <a href="/logoutFunction"><b>Log out</b></a>
+    <div v-if="isLoggedIn" class="entry">
+      <a @click="submitLogout">Logout</a>
     </div>
   </div>
 
@@ -23,8 +23,9 @@
           <h2>Login</h2>
           <input type="text" placeholder="Username" v-model="loginUsername">
           <input type="password" placeholder="Password" v-model="loginPassword">
-          <div v-if="errorMessage">{{ errorMessage }}</div>
-          <button @click="closePopup" type="submit">Login</button>
+          <div class="color message" v-if="successMessage">{{ successMessage }}</div>
+          <div class="color message" v-if="errorMessage">{{ errorMessage }}</div>
+          <button @click="makeRouterWork(), openPopup(1)" type="submit">Login</button>
         </form>
 
         <!-- registration form -->
@@ -35,9 +36,9 @@
           <input type="email" placeholder="Email" v-model="registerEmail">
           <input type="password" placeholder="Password" v-model="registerPassword">
           <input type="password" placeholder="Confirm Password" v-model="registerConfirmPassword">
-          <div v-if="successMessage">{{ successMessage }}</div>
-          <div v-if="errorMessage">{{ errorMessage }}</div>
-          <button @click="makeRouterWork()" type="submit">Sign up</button>
+          <div class="color message" v-if="successMessage">{{ successMessage }}</div>
+          <div class="color message" v-if="errorMessage">{{ errorMessage }}</div>
+          <button type="submit">Sign up</button>
         </form>
 
       </div>
@@ -58,6 +59,8 @@ import {
   closePopup,
   submitLogin,
   submitRegister,
+  submitLogout,
+  isLoggedIn,
   errorMessage,
   successMessage,
   loginUsername,
@@ -72,13 +75,8 @@ import {
 const router = useRouter();
 
 let makeRouterWork = () => {
-  router.push("/about")
+  router.push("/Home")
 }
-
-
-/* onMounted(() => {
-  submitRegister
-}) */
 
 
 </script>
@@ -91,7 +89,21 @@ let makeRouterWork = () => {
 .login-entry-div {
   display: flex;
   align-items: center;
-  color: var(--tertiary-color);;
+  color: var(--tertiary-color);
+}
+
+.entry a{
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.color{
+  color: var(--tertiary-color);
+}
+
+.message{
+  font-size: 30px;
+  margin-bottom: 30px;
 }
 
 .separator {

@@ -7,11 +7,11 @@
 
         <div class="nav-links">
           <RouterLink to="/">Frontpage</RouterLink>
-          <RouterLink to="/Home">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
+          <RouterLink v-if="isLoggedIn" to="/Home">Home</RouterLink>
+          <RouterLink v-if="isLoggedIn" to="/about">About</RouterLink>
         </div>
 
-        <button @click="toggleModal">Share</button>
+        <button class="share" @click="toggleModal">Share</button>
         <ShareModal v-model="modelValue" />
 
         <!-- login & register & logout -->
@@ -34,6 +34,13 @@ import { RouterLink } from 'vue-router';
 import LoginComponent from './loginComponent.vue';
 import ShareModal from './ShareProjectComponent.vue';
 import { ref, defineProps, defineExpose } from 'vue';
+import { useRouter } from 'vue-router';
+
+import { isLoggedIn } from '../modules/login.js';
+
+import { watch } from 'vue';
+
+const router = useRouter();
 
 const components = {
   LoginComponent,
@@ -48,7 +55,6 @@ const props = defineProps({
   toggleDarkMode: Function,
 });
 
-
 const modelValue = ref(false);
 
 const toggleModal = () => {
@@ -57,6 +63,14 @@ const toggleModal = () => {
 
 defineExpose({
   components,
+  isLoggedIn,
+  toggleModal,
+});
+
+watch(isLoggedIn, (newIsLoggedIn) => {
+  if (!newIsLoggedIn) {
+    router.push('/');
+  }
 });
 
 
@@ -70,6 +84,10 @@ defineExpose({
 
 nav{
   position: relative;
+}
+
+.share{
+  margin-right: 20px;
 }
 
 .switch input {
