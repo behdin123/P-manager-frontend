@@ -15,34 +15,71 @@
 
   <div class="popup-container" v-show="popupVisible" @click.self="closePopup">
     <div class="popup">
+
       <div class="popup-content">
+
         <!-- login form -->
         <form id="login-form" v-show="popupContent === 1" @submit.prevent="submitLogin">
           <h2>Login</h2>
-          <input type="text" placeholder="Username" v-model="username">
-          <input type="password" placeholder="Password" v-model="password">
-          <button type="submit">Login</button>
+          <input type="text" placeholder="Username" v-model="loginUsername">
+          <input type="password" placeholder="Password" v-model="loginPassword">
+          <div v-if="errorMessage">{{ errorMessage }}</div>
+          <button @click="closePopup" type="submit">Login</button>
         </form>
 
         <!-- registration form -->
         <form id="register-form" v-show="popupContent === 2" @submit.prevent="submitRegister">
           <h2>Sign up</h2>
-          <input type="text" placeholder="Username" v-model="username">
-          <input type="email" placeholder="Email" v-model="email">
-          <input type="password" placeholder="Password" v-model="password">
-          <input type="password" placeholder="Confirm Password" v-model="confirmPassword">
-          <button type="submit">Sign up</button>
+          <input type="text" placeholder="Username" v-model="registerUsername">
+          <input type="text" placeholder="Mobile" v-model="registerMobile">
+          <input type="email" placeholder="Email" v-model="registerEmail">
+          <input type="password" placeholder="Password" v-model="registerPassword">
+          <input type="password" placeholder="Confirm Password" v-model="registerConfirmPassword">
+          <div v-if="successMessage">{{ successMessage }}</div>
+          <div v-if="errorMessage">{{ errorMessage }}</div>
+          <button @click="makeRouterWork()" type="submit">Sign up</button>
         </form>
 
       </div>
+
       <a class="close-popup" href="#" @click="closePopup">X</a>
+
     </div>
   </div>
 </template>
 
 
 <script setup>
-import { popupVisible, popupContent, openPopup, closePopup, submitLogin, submitRegister } from '../modules/login.js';
+import { useRouter } from 'vue-router';
+import {
+  popupVisible,
+  popupContent,
+  openPopup,
+  closePopup,
+  submitLogin,
+  submitRegister,
+  errorMessage,
+  successMessage,
+  loginUsername,
+  loginPassword,
+  registerUsername,
+  registerMobile,
+  registerEmail,
+  registerPassword,
+  registerConfirmPassword
+} from '../modules/login.js';
+
+const router = useRouter();
+
+let makeRouterWork = () => {
+  router.push("/about")
+}
+
+
+/* onMounted(() => {
+  submitRegister
+}) */
+
 
 </script>
 
@@ -80,7 +117,7 @@ import { popupVisible, popupContent, openPopup, closePopup, submitLogin, submitR
 
 .popup {
   position: relative;
-  margin: 10% auto;
+  margin: 8% auto;
   padding: 20px;
   background-color: var(--primary-color);
   width: 80%;
