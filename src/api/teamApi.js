@@ -15,7 +15,7 @@ export default {
    // Get teams
    getTeams: async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/team`, { withCredentials: true, });
+      const response = await axios.get(`http://localhost:3000/team/me`, { withCredentials: true, });
       return response.data;
     } catch (error) {
       console.error('Failed to get teams:', error);

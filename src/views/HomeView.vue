@@ -162,8 +162,8 @@ main {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: center;
   width: 100%;
+  min-height: 100vh;
   margin-top: 95px !important;
   background-color: var(--secondary-color);
 }
@@ -214,23 +214,6 @@ main h2 {
 
 .title h1{
   color: var(--white-black-color);
-}
-
-.line {
-  position: relative;
-  margin-top: 0 !important;
-  height: 2px;
-  width: 87%;
-  background: var(--white-black-color);
-  transform: scaleX(0);
-  transform-origin: center;
-  animation: line-animation 2s forwards;
-}
-
-@keyframes line-animation {
-  to {
-    transform: scaleX(1);
-  }
 }
 
 .project-container {

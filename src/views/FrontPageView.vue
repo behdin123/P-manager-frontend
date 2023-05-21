@@ -9,17 +9,14 @@
                 <div data-aos="fade-right" data-aos-delay="500" data-aos-duration="1000" data-aos-easing="ease-in-sine"
                     class="welcome-page-description">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis augue ac ligula bibendum
-                        lobortis.
-                        Praesent dignissim justo eget est auctor, in blandit turpis vestibulum. Nam bibendum odio eget sem
-                        fermentum, a ullamcorper velit tincidunt. Suspendisse vel lorem in nisl rutrum bibendum quis vel
-                        eros.
-                        Sed ac nulla euismod, mollis urna eu, efficitur magna.
+                        you can expect a seamless project management experience. With our user-friendly interface, you can 
+                        easily create and organize projects, ensuring that no task is left behind. 
+                        Whether it's for work, school, or any other purpose, our platform empowers you to stay in 
+                        control and achieve your goals.
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis augue ac ligula bibendum
-                        lobortis.
-                        Praesent dignissim justo eget est auctor, in blandit turpis vestibulum.
+                        Join us and discover the joy of efficient project management. Stay inspired, stay organized, 
+                        and conquer your goals with our Project Management Web Application.
                     </p>
                 </div>
             </div>
@@ -84,7 +81,7 @@ import { openPopup } from '../modules/Crud_operator/User/login.js';
 }
 
 .welcome-page-description {
-    max-width: 60%;
+    max-width: 70%;
     color: #ffffff;
 }
 

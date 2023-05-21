@@ -6,7 +6,6 @@
     <!-- page view -->
     <RouterView />
 
-
     <footer-component />
   </div>
 </template>
@@ -63,4 +62,5 @@ const toggleDarkMode = () => {
   --column-backgroundColor: #2d2d2d;
   --card-backgroundColor: #252727;
 }
+
 </style>

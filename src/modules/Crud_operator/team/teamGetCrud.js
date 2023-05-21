@@ -7,8 +7,8 @@ let teams = ref([]);
 // Function to get the teams and store them in the teams ref
 const getTeams = async () => {
     try {
-        const data = await api.getTeams();
-        teams.value = data;
+        const response = await api.getTeams();
+        teams.value = response.teams;
     } catch (error) {
         console.error('Error getting teams:', error);
     }

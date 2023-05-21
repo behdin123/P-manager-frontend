@@ -5,7 +5,7 @@ import api from '../../../api/teamApi.js';
 let newTeam = ref({
     name: '',
     description: '',
-    username: ''
+    users: []
 });
 
 // Function to create a new team, and call the API to save the team
