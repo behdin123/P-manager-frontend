@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import TemplatePageView from "../views/TemplatePageView.vue";
-import { isLoggedIn } from '../modules/login.js';
+import { isLoggedIn } from '../modules/Crud_operator/User/login.js';
+import ProjectBoardComponent from '@/components/project/ProjectBoardComponent.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,24 +16,24 @@ const router = createRouter({
       name: "Home",
       component: HomeView,
       meta: {
-        requiresAuth: true, // Denne rute kræver autentifikation
+        requiresAuth: true, // This route requires authentication
       },
     },
     {
-      path: "/template",
-      name: "TemplatePageView",
-      component: TemplatePageView,
+      path: '/project/:id',
+      name: 'ProjectBoard',
+      component: ProjectBoardComponent,
       meta: {
-        requiresAuth: true, // Denne rute kræver autentifikation
+        requiresAuth: true, // This route requires authentication
       },
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/AboutView.vue"),
+      path: "/team",
+      name: "team",
+      component: () => import("../views/TeamView.vue"),
+      meta: {
+        requiresAuth: true, // This route requires authentication
+      },
     },
   ],
 });
@@ -45,12 +45,13 @@ router.beforeEach((to, from, next) => {
 
   // Redirect the user to the login page if they are not logged in and the route requires authentication
   if (requiresAuth && !isLoggedIn.value) {
-    next('/Home'); 
+    next('/'); 
   } 
   // Allow navigation if there are no restrictions
   else {
     next(); 
   }
+  
 });
 
 export default router;

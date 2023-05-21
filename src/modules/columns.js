@@ -1,68 +1,25 @@
 import { ref } from 'vue';
+import taskApi from '../api/taskApi';
+import api from '../api/projectApi';
 
-export { columns, draggingCard, draggingColumn, hoveredColumn, addCard, dragStart, dragEnd, dragEnter, dragLeave, drop };
-
-const columns = ref([
-    {
-        header: 'To Do',
-        cards: [
-            {
-                header: 'Task 1',
-                description: 'This is the description for task 1.',
-            },
-            {
-                header: 'Task 2',
-                description: 'This is the description for task 2.',
-            },
-        ],
-    },
-    {
-        header: 'In Progress',
-        cards: [
-            {
-                header: 'Task 3',
-                description: 'This is the description for task 3.',
-            },
-        ],
-    },
-    {
-        header: 'Done',
-        cards: [
-            {
-                header: 'Task 4',
-                description: 'This is the description for task 4.',
-            },
-            {
-                header: 'Task 5',
-                description: 'This is the description for task 5.',
-            },
-        ],
-    },
-]);
+import { fetchTasksForColumns } from './Crud_operator/task/taskGetCrud';
 
 const draggingCard = ref(null);
 const draggingColumn = ref(null);
 const hoveredColumn = ref(null);
 
-const addCard = (columnIndex) => {
-    const newCard = {
-        header: 'New Task',
-        description: 'Add a description here.',
-    };
-    columns.value[columnIndex].cards.push(newCard);
-};
-
-const dragStart = (cardIndex, columnIndex, event) => {
+const dragStart = (cardId, columnId, event) => {
     event.target.classList.add("dragging");
     event.dataTransfer.effectAllowed = "move";
-    event.dataTransfer.setData("text/plain", JSON.stringify({ cardIndex, columnIndex }));
-    draggingCard.value = cardIndex;
-    draggingColumn.value = columnIndex;
+    event.dataTransfer.setData("text/plain", JSON.stringify({ cardId, columnId }));
+    draggingCard.value = cardId;
+    draggingColumn.value = columnId;
 };
-
 
 const dragEnd = (event) => {
     event.target.classList.remove("dragging");
+    const columns = document.querySelectorAll(".column");
+    columns.forEach(column => column.classList.remove("dragover"));
     draggingCard.value = null;
     draggingColumn.value = null;
     hoveredColumn.value = null;
@@ -70,24 +27,72 @@ const dragEnd = (event) => {
 
 const dragEnter = (columnIndex, event) => {
     event.preventDefault();
+    event.currentTarget.closest(".column").classList.add("dragover");
+    draggingCard.value = null;
+    draggingColumn.value = null;
     hoveredColumn.value = columnIndex;
 };
 
 const dragLeave = (event) => {
     event.preventDefault();
+    if (event.relatedTarget !== null && event.currentTarget.contains(event.relatedTarget)) {
+        return;
+    }
+    event.currentTarget.classList.remove("dragover");
     hoveredColumn.value = null;
 };
 
-const drop = (columnIndex, event) => {
+const columns = ref([]);
+
+async function fetchColumns(projectId) {
+    
+    console.log('fetchColumns: Before fetching columns');
+
+    try {
+      columns.value = await api.getColumnsByProject(projectId);
+      console.log('fetchColumns: After fetching columns:', columns.value);
+
+    } catch (error) {
+      console.error("Error fetching columns:", error);
+    }
+  }
+
+  
+
+  const drop = async (projectId, columnId, event) => {
     if (event) {
         event.preventDefault();
         const data = JSON.parse(event.dataTransfer.getData("text/plain"));
-        const { cardIndex, columnIndex: fromColumnIndex } = data;
-        const draggingCard = columns.value[fromColumnIndex].cards.splice(cardIndex, 1)[0];
-        columns.value[columnIndex].cards.push(draggingCard);
-        event.target.classList.remove("dragging");
+        const { cardId, columnId: fromColumnId } = data;
 
-        draggingCard.status = columns.value[columnIndex].status;
+        /* console.log("cardId:", cardId);
+        console.log("projectId:", projectId);
+        console.log("columnId:", columnId);
+        console.log("fromColumnId:", fromColumnId); */
+        
+
+       
+        // Update the task's column on your backend
+        await taskApi.updateTaskColumn(cardId, projectId, columnId);
+
+        // Fetch the updated tasks for both columns
+        await fetchTasksForColumns(projectId, [fromColumnId, columnId]);
     }
     hoveredColumn.value = null;
+};
+
+
+
+
+export { 
+    draggingCard, 
+    draggingColumn, 
+    hoveredColumn,
+    columns,
+    dragStart, 
+    dragEnd, 
+    dragEnter, 
+    dragLeave,
+    fetchColumns, 
+    drop,
 };

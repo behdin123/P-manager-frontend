@@ -8,15 +8,24 @@
         <div class="nav-links">
           <RouterLink to="/">Frontpage</RouterLink>
           <RouterLink v-if="isLoggedIn" to="/Home">Home</RouterLink>
-          <RouterLink v-if="isLoggedIn" to="/about">About</RouterLink>
+          <RouterLink v-if="isLoggedIn" to="/team">Teams</RouterLink>
         </div>
 
         <button class="share" @click="toggleModal">Share</button>
         <ShareModal v-model="modelValue" />
 
         <!-- login & register & logout -->
-        <div class="login-div">
+        <div class="login-div" v-bind:class="{ 'login-div-loggedin': isLoggedIn }">
           <login-component />
+        </div>
+
+        <div class="user-short" v-if="isLoggedIn" @click="showPopup = !showPopup">
+          <img :src="profile_image" alt="Profile Picture" class="user-short__img">
+          <p class="user-short-name">{{ capitalizedUsername() }}</p>
+        </div>
+
+        <div v-if="showPopup">
+           <UserProfileComponent />
         </div>
 
         <label class="switch">
@@ -30,22 +39,24 @@
 </template>
 
 <script setup>
+import { ref, defineProps, watch} from 'vue';
 import { RouterLink } from 'vue-router';
-import LoginComponent from './loginComponent.vue';
-import ShareModal from './ShareProjectComponent.vue';
-import { ref, defineProps, defineExpose } from 'vue';
+import LoginComponent from '../user/loginComponent.vue';
+import ShareModal from '../ShareProjectComponent.vue';
+import UserProfileComponent from '../user/userProfileComponent.vue';
 import { useRouter } from 'vue-router';
 
-import { isLoggedIn } from '../modules/login.js';
+import { isLoggedIn } from '../../modules/Crud_operator/User/login.js';
 
-import { watch } from 'vue';
+import { capitalizedUsername, showPopup } from '../../modules/Main_logic/UserProfile';
 
-const router = useRouter();
+import { profile_image } from '../../modules/Crud_operator/User/userGetCrud'
 
 const components = {
   LoginComponent,
   ShareModal,
-};
+  UserProfileComponent,
+}; 
 
 const props = defineProps({
   title: {
@@ -57,16 +68,14 @@ const props = defineProps({
 
 const modelValue = ref(false);
 
+//share project popup container
 const toggleModal = () => {
   modelValue.value = !modelValue.value;
 };
 
-defineExpose({
-  components,
-  isLoggedIn,
-  toggleModal,
-});
+const router = useRouter();
 
+//checking if the user is logged out then it should be send back to the frontpage
 watch(isLoggedIn, (newIsLoggedIn) => {
   if (!newIsLoggedIn) {
     router.push('/');
@@ -153,10 +162,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-.login-div{
-  margin-right: 110px;
-}
-
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -179,6 +184,37 @@ a:link {
 
 .nav-links {
   margin-right: 50px;
+}
+
+.login-div{
+  margin-right: 100px;
+}
+
+.login-div-loggedin{
+  margin-right: 30px !important;
+}
+
+.user-short {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 110px;
+}
+
+.user-short__img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.user-short-name{
+  font-weight: bold;
+  color: var(--white-black-color);
+}
+
+.user-short-name:first-letter{
+  text-transform: capitalize !important;
 }
 
 header a {

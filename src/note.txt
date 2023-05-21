@@ -1,38 +1,50 @@
 - squash commits (Github)
-- dynamic css classes and apply when changing the staus of the tasks (one-way-binding)
+
+- dynamic css classes and apply when changing the staus of the tasks (one-way-binding) (check)
+
 - 2-way-binding 
-- navigation guards
+
+- navigation guards (check - simple)
+
+
 
 - CRUD
 
 Project
-. create
-. Read
-. update
-. Delete
+. create (check)
+. Read   (check)
+. update (check)
+. Delete (check)
 
 Columns  // version 2 
-. create
-. Read
-. update
-. Delete
-
+. create (this is made to be default in backend Rest Api)
+. Read   (check)
+. update (only for version 2)
+. Delete (only for version 2)
 
 Tasks
-. create
-. Read
-. update
-. Delete
-
+. create (check)
+. Read   (check - not after the creation (going to Done))
+. update (check)
+. Delete *
 
 User
-. create
-. Read
-. update
-. Delete
+. create (check)
+. Read   (check)
+. update (check)
+. Delete (not yet!)
 
 Team
-. create
-. Read
-. update
-. Delete
+. create *
+. Read   *
+. update *
+. Delete *
+
+
+Error handling frontend?
+
+Tasks (date handler)?
+
+Composition Api
+Composable functions
+Component based

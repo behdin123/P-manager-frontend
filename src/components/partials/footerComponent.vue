@@ -73,8 +73,12 @@ footer {
     background-image: url('@/assets/instagram.svg');
 }
 
-.social-icons a:hover {
-    color: var(--secondary-color);
+a::before{
+    transform: scaleX(0);
+}
+
+a:hover::before{
+    transform: scaleX(0) !important;
 }
 
 footer p {

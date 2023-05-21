@@ -13,6 +13,7 @@
     </div>
   </div>
 
+  
   <div class="popup-container" v-show="popupVisible" @click.self="closePopup">
     <div class="popup">
 
@@ -20,25 +21,34 @@
 
         <!-- login form -->
         <form id="login-form" v-show="popupContent === 1" @submit.prevent="submitLogin">
+
           <h2>Login</h2>
+
           <input type="text" placeholder="Username" v-model="loginUsername">
           <input type="password" placeholder="Password" v-model="loginPassword">
-          <div class="color message" v-if="successMessage">{{ successMessage }}</div>
+
           <div class="color message" v-if="errorMessage">{{ errorMessage }}</div>
-          <button @click="makeRouterWork(), openPopup(1)" type="submit">Login</button>
+
+          <button @click="makeRouterWork()" type="submit">Login</button>
+
         </form>
 
         <!-- registration form -->
         <form id="register-form" v-show="popupContent === 2" @submit.prevent="submitRegister">
+
           <h2>Sign up</h2>
+
           <input type="text" placeholder="Username" v-model="registerUsername">
           <input type="text" placeholder="Mobile" v-model="registerMobile">
           <input type="email" placeholder="Email" v-model="registerEmail">
           <input type="password" placeholder="Password" v-model="registerPassword">
           <input type="password" placeholder="Confirm Password" v-model="registerConfirmPassword">
+
           <div class="color message" v-if="successMessage">{{ successMessage }}</div>
           <div class="color message" v-if="errorMessage">{{ errorMessage }}</div>
+
           <button type="submit">Sign up</button>
+
         </form>
 
       </div>
@@ -52,6 +62,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+
 import {
   popupVisible,
   popupContent,
@@ -70,12 +81,14 @@ import {
   registerEmail,
   registerPassword,
   registerConfirmPassword
-} from '../modules/login.js';
+} from '../../modules/Crud_operator/User/login.js';
 
 const router = useRouter();
 
 let makeRouterWork = () => {
-  router.push("/Home")
+/*   if(isLoggedIn === true){ */
+    router.push("/Home")
+ /*  } */
 }
 
 

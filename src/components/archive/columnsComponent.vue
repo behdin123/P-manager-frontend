@@ -33,18 +33,11 @@
 </template>
   
 <script setup>
-import { columns, draggingCard, draggingColumn, hoveredColumn, addCard, dragStart, dragEnd, dragEnter, dragLeave, drop } from '../modules/columns';
+import { columns, addCard, dragStart, dragEnd, drop } from '../modules/columns';
 /* import tasksComponent from '../components/tasksComponent.vue' */
 </script>
 
-<script>
-/* export default {
-    name: 'column',
-    components: {
-        tasksComponent
-    }
-} */
-</script>
+
   
 
 <style lang="scss" scoped>

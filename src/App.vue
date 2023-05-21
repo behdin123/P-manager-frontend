@@ -15,13 +15,24 @@
 <script setup>
 
 import { RouterView } from 'vue-router'
+import Cookies from 'js-cookie';
+import { isLoggedIn } from './modules/Crud_operator/User/login.js';
 
-// importing navigation & footer from components
-import footerComponent from './components/footerComponent.vue';
-import navigationComponent from './components/navigationComponent.vue';
+// Importing navigation & footer from components
+import footerComponent from './components/partials/footerComponent.vue';
+import navigationComponent from './components/partials/navigationComponent.vue';
 
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, onMounted } from 'vue';
 
+// chekcing if their is a token saved as a coockie, and if so it means that the user is logged in and theirfor the isLoggedIn value will be sat to true
+onMounted(() => {
+  const token = Cookies.get('jwt');
+  if (token) {
+    isLoggedIn.value = true;
+  }
+});
+
+//Dark Mode
 const darkMode = ref(false);
 
 watchEffect(() => {
@@ -31,7 +42,6 @@ watchEffect(() => {
 const toggleDarkMode = () => {
   darkMode.value = !darkMode.value;
 };
-
 
 </script>
 
@@ -45,9 +55,12 @@ const toggleDarkMode = () => {
   --secondary-color: #171C22;
   --tertiary-color: #ffffff;
   --quaternary-color: #3563FF;
+  --quaternary-hover-color: #2649ba;
   --primary-hover-color: #FED201;
   --background-color: #212121;
-  --column-color: #474747;
-  --card-color: #424242;
+  --white-black-color: #ffffff;
+
+  --column-backgroundColor: #2d2d2d;
+  --card-backgroundColor: #252727;
 }
 </style>

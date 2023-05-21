@@ -3,8 +3,49 @@
 --secondary-color: #F3F6FF;
 --tertiary-color: #314E59;
 --quaternary-color: #3563FF;
+--quaternary-hover-color: #2649ba;
 --primary-hover-color: #FED201;
 --background-color: #f1f1f1;
---column-color: #ffffff;
---card-color: #e3e3e3;
+--white-black-color: #000000;
+
+--column-backgroundColor: #ebecf0;
+--card-backgroundColor: #fff;
 }
+
+.Update-button{
+    background-color: #8BC34A !important;
+}
+
+
+.column {
+    transition: background-color 0.2s ease;
+}
+
+.column.dragover {
+    background-color: #d1d1d1; 
+    border: 2px #333 !important;
+}
+
+.card {
+    transition: transform 0.2s ease, opacity 0.2s ease; 
+}
+
+.card.dragging {
+    transform: scale(1.05) !important; 
+    opacity: 0.2 !important; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2) !important; 
+}
+
+
+.cropper-bg {
+    background-image: none !important;
+}
+
+.cropper-container {
+    position: absolute;
+}
+
+
+
+
+

@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import { openPopup } from '../modules/login.js';
+import { openPopup } from '../modules/Crud_operator/User/login.js';
 
 
 </script>

@@ -1,37 +1,21 @@
 import { ref } from 'vue';
 import validator from 'validator';
 
-import api from '../api/api.js';
+import api from '../../../api/authApi.js';
 import Cookies from 'js-cookie';
-
-export {
-  popupVisible,
-  popupContent,
-  openPopup,
-  closePopup,
-  submitLogin,
-  submitRegister,
-  submitLogout,
-  errorMessage,
-  successMessage,
-  isLoggedIn,
-  loginUsername,
-  loginPassword,
-  registerUsername,
-  registerMobile,
-  registerEmail,
-  registerPassword,
-  registerConfirmPassword
-};
 
 const popupVisible = ref(false);
 const popupContent = ref(0);
 
+
+// for open the popup, bouth login & register 
 const openPopup = (content) => {
   popupContent.value = content;
   popupVisible.value = true;
 };
 
+
+// for close the popup, bouth login & register 
 const closePopup = () => {
   popupVisible.value = false;
 };
@@ -44,6 +28,8 @@ const displayError = (message) => {
 };
 
 
+
+// validates user registration form input for username, mobile, email, password, and confirmPassword
 const isRegisterFormValid = (username, mobile, email, password , confirmPassword) => {
 
   if (!username || !mobile || !email || !password || !confirmPassword ) {
@@ -63,7 +49,6 @@ const isRegisterFormValid = (username, mobile, email, password , confirmPassword
     return 'Please enter a valid email address';
   }
 
-  // Validate password with length
   if (!validator.isLength(password, { min: 6 })) {
     return 'Password must be at least 6 characters long';
   }
@@ -76,6 +61,7 @@ const isRegisterFormValid = (username, mobile, email, password , confirmPassword
 };
 
 
+// variables to store user registration values
 const registerUsername = ref('');
 const registerMobile = ref('');
 const registerEmail = ref('');
@@ -83,10 +69,12 @@ const registerPassword = ref('');
 const registerConfirmPassword = ref('');
 
 
+
 async function submitRegister() {
-
+  // Validate user input with isRegisterFormValid function
   const validationResult = isRegisterFormValid(registerUsername.value, registerMobile.value, registerEmail.value, registerPassword.value, registerConfirmPassword.value);
-
+  
+  // If input is valid, make an API request to register user
   if (validationResult == true) {
     try {
       console.log("Request body:", validationResult);
@@ -122,6 +110,9 @@ async function submitRegister() {
 
 
 
+
+
+// Validate user login form input
 const isLoginFormValid = (username, password) => {
 
   if (!username || !password) {
@@ -141,14 +132,22 @@ const isLoginFormValid = (username, password) => {
   return true;
 };
 
+
+// variable to check the loggin status - if the user is logged in or not
 const isLoggedIn = ref(false);
 
 const loginUsername = ref('');
 const loginPassword = ref('');
 
+
+
+// Function to handle user login form submission
 async function submitLogin() {
+
+  // Validate user input with isLoginFormValid function
   const validationResult = isLoginFormValid(loginUsername.value, loginPassword.value);
 
+  // If input is valid, make an API request to login user
   if (validationResult === true) {
     try {
       const response = await api.login({
@@ -163,6 +162,8 @@ async function submitLogin() {
         expires: 1, // 1 day
       });
 
+      closePopup();
+
       // Show success message
       successMessage.value = "You're successfully logged in";
 
@@ -175,9 +176,11 @@ async function submitLogin() {
       if (error.response) {
         console.error("Error:", error.response.data);
         errorMessage.textContent = error.response.data.message;
+   
       } else {
         console.error("Error:", error.message);
         errorMessage.textContent = "An error occurred. Please try again later.";
+        debugger
       }
     }
   } 
@@ -187,6 +190,7 @@ async function submitLogin() {
 }
 
 
+// Function to handle user logout form submission
 async function submitLogout() {
 
   // Remove the token from the cookie
@@ -202,14 +206,31 @@ async function submitLogout() {
   // Do not show success message
   successMessage.value = "";
 
-  // Redirect to login page or another appropriate page
-  const router = useRouter();
-  router.push('/login');
-
   // Optional: Show a success message
   successMessage.value = "You've successfully logged out!";
 
 }
+
+
+export {
+  popupVisible,
+  popupContent,
+  openPopup,
+  closePopup,
+  submitLogin,
+  submitRegister,
+  submitLogout,
+  errorMessage,
+  successMessage,
+  isLoggedIn,
+  loginUsername,
+  loginPassword,
+  registerUsername,
+  registerMobile,
+  registerEmail,
+  registerPassword,
+  registerConfirmPassword
+};
 
 
 
