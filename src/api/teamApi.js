@@ -5,7 +5,7 @@ export default {
     // Create team
     createTeam: async (data) => {
             try {
-            const response = await axios.post(`http://localhost:3000/team/create`, data, { withCredentials: true, });
+            const response = await axios.post(`https://pwa-rest-api-mevn.onrender.com/team/create`, data, { withCredentials: true, });
             return response;
             } catch (error) {
             console.error('Failed to create team:', error);
@@ -16,7 +16,7 @@ export default {
    // Get teams
    getTeams: async () => {
         try {
-        const response = await axios.get(`http://localhost:3000/team/me`, { withCredentials: true, });
+        const response = await axios.get(`https://pwa-rest-api-mevn.onrender.com/team/me`, { withCredentials: true, });
         return response.data;
         } catch (error) {
         console.error('Failed to get teams:', error);
@@ -27,7 +27,7 @@ export default {
     // Update team
     updateTeam: async (teamId, data) => {
         try {
-        const response = await axios.put(`http://localhost:3000/team/update/${teamId}`, data, { withCredentials: true });
+        const response = await axios.put(`https://pwa-rest-api-mevn.onrender.com/team/update/${teamId}`, data, { withCredentials: true });
         return response.data;
         } catch (error) {
         console.error('Failed to update team:', error);
@@ -37,7 +37,7 @@ export default {
 
     removeTeam: async (teamId) => {
         try {
-          const response = await axios.delete(`http://localhost:3000/team/remove/${teamId}`, { withCredentials: true });
+          const response = await axios.delete(`https://pwa-rest-api-mevn.onrender.com/team/remove/${teamId}`, { withCredentials: true });
           return response.data;
         } catch (error) {
           console.error('Failed to remove team:', error);

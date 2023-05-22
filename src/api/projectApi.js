@@ -15,7 +15,7 @@ createProject: async (data) => {
           formData.append('image', data.image, data.image.name);
       }
 
-      const response = await axios.post(`http://localhost:3000/project/create`, formData, { withCredentials: true,
+      const response = await axios.post(`https://pwa-rest-api-mevn.onrender.com/project/create`, formData, { withCredentials: true,
       });
       
       return response;
@@ -31,7 +31,7 @@ createProject: async (data) => {
 // Get All projects for the user
 getAllProjects: async () => {
   try {
-    const response = await axios.get('http://localhost:3000/project/list', { withCredentials: true });
+    const response = await axios.get('https://pwa-rest-api-mevn.onrender.com/project/list', { withCredentials: true });
     console.log('Response from API:', response.data.projects);
     return response.data.projects;
     
@@ -45,7 +45,7 @@ getAllProjects: async () => {
 // Get a single project by ID
 getProjectById: async (projectId) => {
   try {
-    const response = await axios.get(`http://localhost:3000/project/${projectId}`, { withCredentials: true });
+    const response = await axios.get(`https://pwa-rest-api-mevn.onrender.com/project/${projectId}`, { withCredentials: true });
     return response.data.project;
   } catch (error) {
     console.error('Failed to fetch project:', error);
@@ -57,7 +57,7 @@ getProjectById: async (projectId) => {
 // Get columns by project ID
 getColumnsByProject: async (projectId) => {
   try {
-    const response = await axios.get(`http://localhost:3000/project/${projectId}/columns`, { withCredentials: true });
+    const response = await axios.get(`https://pwa-rest-api-mevn.onrender.com/project/${projectId}/columns`, { withCredentials: true });
     console.log('API response:', response.data); // se if the response.data contains the correct values
     return response.data;
 
@@ -71,7 +71,7 @@ getColumnsByProject: async (projectId) => {
 // Remove a project by ID
 removeProject: async (id) => {
   try {
-    const response = await axios.delete(`http://localhost:3000/project/remove/${id}`, { withCredentials: true });
+    const response = await axios.delete(`https://pwa-rest-api-mevn.onrender.com/project/remove/${id}`, { withCredentials: true });
     return response.data;
     
   } catch (error) {
@@ -84,7 +84,7 @@ removeProject: async (id) => {
 // Update project information
 updateProject: async (projectId, updatedProject) => {
   try {
-    const response = await axios.put(`http://localhost:3000/project/edit/${projectId}`, updatedProject, {
+    const response = await axios.put(`https://pwa-rest-api-mevn.onrender.com/project/edit/${projectId}`, updatedProject, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -103,7 +103,7 @@ updateProjectImage: async (projectId, updatedImage) => {
     const formData = new FormData();
     formData.append('image', updatedImage, updatedImage.name);
 
-    const response = await axios.patch(`http://localhost:3000/project/edit-projectImage/${projectId}`, formData, {
+    const response = await axios.patch(`https://pwa-rest-api-mevn.onrender.com/project/edit-projectImage/${projectId}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

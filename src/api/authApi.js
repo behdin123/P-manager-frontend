@@ -8,7 +8,7 @@ register: async (data) => {
     try {
         
       console.log("Request body:", data);
-      const response = await axios.post(`http://localhost:3000/auth/register`, data);  
+      const response = await axios.post(`https://pwa-rest-api-mevn.onrender.com/auth/register`, data);  
      
       return response;
 
@@ -22,7 +22,7 @@ register: async (data) => {
     try {
         
       console.log("Request body:", data);
-      const response = await axios.post(`http://localhost:3000/auth/login`, data);  //${BASE_URL}
+      const response = await axios.post(`https://pwa-rest-api-mevn.onrender.com/auth/login`, data);  //${BASE_URL}
      
       return response;
     } catch (error) {
