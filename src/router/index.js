@@ -3,6 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import { isLoggedIn } from '../modules/Crud_operator/User/login.js';
 import ProjectBoardComponent from '../components/project/ProjectBoardComponent.vue';
 
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
