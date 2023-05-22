@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import { isLoggedIn } from '../modules/Crud_operator/User/login.js';
-import ProjectBoardComponent from '../components/project/ProjectBoardComponent.vue';
+import ProjectBoardComponent from '../components/project/projectBoardComponent.vue';
 
 
 const router = createRouter({
