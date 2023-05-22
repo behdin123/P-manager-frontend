@@ -180,7 +180,6 @@ async function submitLogin() {
       } else {
         console.error("Error:", error.message);
         errorMessage.textContent = "An error occurred. Please try again later.";
-        debugger
       }
     }
   } 
