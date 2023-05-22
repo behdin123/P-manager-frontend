@@ -34,28 +34,28 @@
 import {
     createTeam,
     newTeam
-} from '../../modules/Crud_operator/Team/teamCreateCrud';
+} from '../../modules/Crud_operator/team/teamCreateCrud';
 
-// Tilføj 'defineProps' import
+
 import { ref, defineProps, defineEmits } from 'vue';
 
-// Definer 'showTeamCreation' prop
+// Define 'showTeamCreation' prop
 const props = defineProps({
   showTeamCreation: Boolean,
 });
 
-const emit = defineEmits(['close', 'teamCreated']);
+const emit = defineEmits(['close', 'team-created']);
 
-// Opret en ny ref til at gemme brugernavne som en streng
+// Ref for save usernames as string
 let usernames = ref('');
 
 const handleCreateTeam = async () => {
-  // Konverter kommasepareret brugernavne til array
+  // convert comma seperated username to array
   newTeam.value.users = usernames.value.split(',').map(username => username.trim());
   const isSuccess = await createTeam();
   if (isSuccess) {
-    emit('teamCreated');
     emit('close'); // Close the popup if the team was created successfully
+    emit('team-created');
   }
 };
 

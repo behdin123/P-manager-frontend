@@ -1,4 +1,5 @@
 <template>
+
     <div class="team-page-container">
 
         <div class="title-container">
@@ -12,32 +13,25 @@
         <div class="line"></div>
 
         <!-- Reading all the teams for the current user - component -->
-        <teamGetComponent />
+        <teamGetComponent  :refresh-teams="refreshTeams"/>
 
         <!-- team creating popup - component -->
-        <teamCreateComponent :showTeamCreation="showTeamCreation" @close="showTeamCreation = false" @teamCreated="refreshTeams"/>
-
-
+        <teamCreateComponent :showTeamCreation="showTeamCreation" @close="showTeamCreation = false" @team-created="refreshTeams"/>
 
     </div>
+
 </template>
 
 <script setup>
 import teamGetComponent from '../components/team/teamGetComponent.vue';
 import teamCreateComponent from '../components/team/teamCreateComponent.vue';
-import { getTeams } from '../modules/Crud_operator/Team/teamGetCrud';
 
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
+
+import { refreshTeams } from '../modules/Main_logic/Team';
 
 let showTeamCreation = ref(false);
-let refreshTeams = ref(false);
 
-watchEffect(() => {
-    if (refreshTeams.value) {
-    getTeams(); // Refresh the team list
-    refreshTeams.value = false; // Reset refreshTeams
-  }
-});
 </script>
 
 

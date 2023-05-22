@@ -17,5 +17,5 @@ const getTeams = async () => {
 // Export the functions and variables for use in teamGetComponent.vue
 export {
     getTeams,
-    teams
+    teams,
 };

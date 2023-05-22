@@ -285,28 +285,8 @@ main h2 {
   width: 370px;
 }
 
-.project-btn-div{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out; 
-}
-
-.project:hover .project-btn-div {
-  opacity: 1; 
-}
-
 .edit-button{
   margin-top: 20px;
-  height: 41px;
-  width: 90px;
-  padding: 0 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .card {
@@ -353,17 +333,6 @@ main h2 {
 .card button:hover {
   background-color: var(--primary-hover-color);
   color: #000;
-}
-
-.edit-icon{
-  display: inline-block;
-  width: 15px; 
-  height: 15px; 
-  background-image: url('@/assets/pencil.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-left: 20px;
 }
 
 .plus-icon {

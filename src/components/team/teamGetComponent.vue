@@ -1,44 +1,80 @@
 <template>
-
-        <div class="team-container">
-            <div class="team" v-for="team in teams" :key="team._id">
-                <div class="team-content">
-
-                    <div>
-                        <h3>{{ team.name }}</h3>
-                        <p>{{ team.description }}</p>
-                    </div>
-
-                    <div class="user-information-container">
-                        <div class="user-information" v-for="user in team.users" :key="user._id">
-                            <img :src="`http://localhost:3000/${user.profile_image}`" alt="Profile Picture" class="user-short__img">
-                            <b>{{ user.first_name }}</b>
-                            <b>{{ user.last_name }}</b>
-                        </div>
-                    </div>
-
-                </div>
+  <div class="team-container">
+    <div class="team" v-for="team in teams" :key="team._id">
+      <div class="team-content">
+        <div class="team-information">
+          <div>
+            <h3>{{ team.name }}</h3>
+            <p>{{ team.description }}</p>
+          </div>
+          <div class="user-information-container">
+            <div class="user-information" v-for="user in team.users" :key="user._id">
+              <img :src="`http://localhost:3000/${user.profile_image}`" alt="Profile Picture" class="user-short__img">
+              <b>{{ user.first_name }}</b>
+              <b>{{ user.last_name }}</b>
             </div>
+          </div>
         </div>
-        
+        <div class="project-btn-div">
+          <button class="button project-btn-margin edit-button" @click="showEditPopup(team)">
+            Edit
+            <span class="edit-icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <teamUpdateComponent 
+    v-if="selectedTeam" 
+    :team="selectedTeam" 
+    @team-updated="refreshTeams"
+    @team-deleted="refreshTeams"
+    @close="closeEditPopup" 
+    />
+
+  </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-
-import { profile_image } from '../../modules/Crud_operator/User/userGetCrud'
+import { ref, onMounted, watchEffect } from 'vue';
+import teamUpdateComponent from './teamUpdateComponent.vue';
 
 import {
     getTeams,
     teams
-} from '../../modules/Crud_operator/Team/teamGetCrud';
+} from '../../modules/Crud_operator/team/teamGetCrud';
 
+import {
+  refreshTeams
+} from '../../modules/Main_logic/Team';
 
 onMounted(async () => {
   await getTeams();
 });
 
+const shouldRefreshTeams = ref(false);
+
+watchEffect(() => {
+  const updatedTeams = [...teams.value];
+  teams.value = updatedTeams;
+  if (shouldRefreshTeams.value) {
+    refreshTeams();
+    shouldRefreshTeams.value = false;
+  }
+});
+
+const selectedTeam = ref(null);
+
+const showEditPopup = (team) => {
+  selectedTeam.value = team;
+};
+
+const closeEditPopup = () => {
+  selectedTeam.value = null;
+};
 </script>
+
+
 
 
 
@@ -83,6 +119,14 @@ body {
 .team-content {
   position: relative;
   height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.team-information{
+  position: relative;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
