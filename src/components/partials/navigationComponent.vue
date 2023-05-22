@@ -11,9 +11,6 @@
           <RouterLink v-if="isLoggedIn" to="/team">Teams</RouterLink>
         </div>
 
-        <button class="share" @click="toggleModal">Share</button>
-        <ShareModal v-model="modelValue" />
-
         <!-- login & register & logout -->
         <div class="login-div" v-bind:class="{ 'login-div-loggedin': isLoggedIn }">
           <login-component />
@@ -42,7 +39,6 @@
 import { ref, defineProps, watch} from 'vue';
 import { RouterLink } from 'vue-router';
 import LoginComponent from '../user/loginComponent.vue';
-import ShareModal from '../ShareProjectComponent.vue';
 import UserProfileComponent from '../user/userProfileComponent.vue';
 import { useRouter } from 'vue-router';
 
@@ -54,7 +50,6 @@ import { profile_image } from '../../modules/Crud_operator/User/userGetCrud'
 
 const components = {
   LoginComponent,
-  ShareModal,
   UserProfileComponent,
 }; 
 
