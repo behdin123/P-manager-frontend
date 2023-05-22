@@ -82,7 +82,7 @@ import projectCreateComponent from '../components/project/projectCreateComponent
 
 import { projects, fetchProjects } from '../modules/Crud_operator/Project/projectGetCrud';
 
-import ProjectUpdateComponent from '../Components/project/projectUpdateComponent.vue';
+import ProjectUpdateComponent from '../components/project/projectUpdateComponent.vue';
 
 import {
     // Create project popup functions & variables
