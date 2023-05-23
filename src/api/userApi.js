@@ -7,7 +7,7 @@ export default {
 getProfile: async () => {
     try {
 
-      const res = await axios.get(`https://pwa-rest-api-mevn.onrender.com/user/profile`, { withCredentials: true });
+      const res = await axios.get(`https://p-manager-frontend.onrender.com/user/profile`, { withCredentials: true });
 
       console.log("Request body:", res.data);
       
@@ -23,12 +23,12 @@ getProfile: async () => {
 
       console.log("Request body:", data);
 
-      const response = await axios.post(`https://pwa-rest-api-mevn.onrender.com/user/profile`, data, { withCredentials: true });
+      const response = await axios.post(`https://p-manager-frontend.onrender.com/user/profile`, data, { withCredentials: true });
       
       console.log("API Response:", response.data, data  );
 
       if (response.data.success) {
-          axios.post(`https://pwa-rest-api-mevn.onrender.com/user/profile`, data, { withCredentials: true }); // return response;
+          axios.post(`https://p-manager-frontend.onrender.com/user/profile`, data, { withCredentials: true }); // return response;
       }
     
     } catch (error) {
@@ -41,7 +41,7 @@ getProfile: async () => {
   // Upload user profile image
   uploadProfileImage: async (formData) => {
     try {
-      const response = await axios.post("https://pwa-rest-api-mevn.onrender.com/user/profile-image", formData, {withCredentials: true,});
+      const response = await axios.post("https://p-manager-frontend.onrender.com/user/profile-image", formData, {withCredentials: true,});
 
       if (response.data.success) {
         return response.data;
