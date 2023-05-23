@@ -8,7 +8,7 @@ const taskApi = {
       return response.data.task;
     } catch (error) {
       console.error('Failed to create task:', error);
-      throw error;
+      throw error.response.data;
     }
   },
 
@@ -21,7 +21,7 @@ const taskApi = {
       return response.data;
     } catch (error) {
       console.error("Error getting tasks:", error);
-      throw error;
+      throw error.response.data;
     }
   },
 
@@ -31,7 +31,7 @@ const taskApi = {
       return response.data.task;
     } catch (error) {
       console.error('Failed to update task:', error);
-      throw error;
+      throw error.response.data;
     }
   },
 
@@ -51,7 +51,7 @@ const taskApi = {
       return response.data.task;
     } catch (error) {
       console.error('Failed to update task column:', error);
-      throw error;
+      throw error.response.data;
     }
   },
 

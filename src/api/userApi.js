@@ -13,7 +13,7 @@ getProfile: async () => {
       
       return res.data;
     } catch (error) {
-      throw error;
+      throw error.red.data;
     }
   },
 
@@ -33,7 +33,7 @@ getProfile: async () => {
     
     } catch (error) {
       console.error('Failed to update user information:', error);
-      throw error;
+      throw error.response.data;
     }
   },
 
@@ -50,7 +50,7 @@ getProfile: async () => {
       alert("Failed to upload profile image.");
     } catch (error) {
       console.error("Error uploading profile image:", error);
-      throw error;
+      throw error.response.data;
     }
   },
 

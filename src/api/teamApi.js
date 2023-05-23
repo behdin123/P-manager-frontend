@@ -4,13 +4,13 @@ export default {
 
     // Create team
     createTeam: async (data) => {
-            try {
-            const response = await axios.post(`https://p-manager-frontend.onrender.com/team/create`, data, { withCredentials: true, });
-            return response;
-            } catch (error) {
-            console.error('Failed to create team:', error);
-            throw error;
-            }
+        try {
+        const response = await axios.post(`https://p-manager-frontend.onrender.com/team/create`, data, { withCredentials: true, });
+        return response;
+        } catch (error) {
+        console.error('Failed to create team:', error);
+        throw error.response.data;
+        }
     },
 
    // Get teams
@@ -20,7 +20,7 @@ export default {
         return response.data;
         } catch (error) {
         console.error('Failed to get teams:', error);
-        throw error;
+        throw error.response.data;
         }
     },
 
@@ -31,7 +31,7 @@ export default {
         return response.data;
         } catch (error) {
         console.error('Failed to update team:', error);
-        throw error;
+        throw error.response.data;
         }
     },
 
@@ -41,7 +41,7 @@ export default {
           return response.data;
         } catch (error) {
           console.error('Failed to remove team:', error);
-          throw error;
+          throw error.response.data;
         }
     }
 

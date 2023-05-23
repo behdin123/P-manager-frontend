@@ -22,7 +22,7 @@ createProject: async (data) => {
       
     } catch (error) {
       console.error('Failed to create project:', error);
-      throw error;
+      throw error.response.data;
     }
   },
 
@@ -37,7 +37,7 @@ getAllProjects: async () => {
     
   } catch (error) {
     console.error('Failed to fetch projects:', error);
-    throw error;
+    throw error.response.data;
   }
 },
 
@@ -49,7 +49,7 @@ getProjectById: async (projectId) => {
     return response.data.project;
   } catch (error) {
     console.error('Failed to fetch project:', error);
-    throw error;
+    throw error.response.data;
   }
 },
 
@@ -63,7 +63,7 @@ getColumnsByProject: async (projectId) => {
 
   } catch (error) {
     console.error('Failed to fetch columns:', error);
-    throw error;
+    throw error.response.data;
   }
 },
 
@@ -76,7 +76,7 @@ removeProject: async (id) => {
     
   } catch (error) {
     console.error('Failed to remove project:', error);
-    throw error;
+    throw error.response.data;
   }
 },
 
@@ -93,7 +93,7 @@ updateProject: async (projectId, updatedProject) => {
     return response.data;
   } catch (error) {
     console.error('Failed to update project:', error);
-    throw error;
+    throw error.response.data;
   }
 },
 
@@ -112,7 +112,7 @@ updateProjectImage: async (projectId, updatedImage) => {
     return response.data;
   } catch (error) {
     console.error('Failed to update project image:', error);
-    throw error;
+    throw error.response.data;
   }
 },
 

@@ -11,7 +11,7 @@ register: async (data) => {
       return response;
 
     } catch (error) {
-      throw error;
+      throw error.response.data;
     }
   },
 
@@ -23,7 +23,7 @@ register: async (data) => {
       return response;
 
     } catch (error) {
-      throw error;
+      throw error.response.data;
     }
   },
 
