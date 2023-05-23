@@ -7,13 +7,13 @@ export default {
 getProfile: async () => {
     try {
 
-      const res = await axios.get(`https://p-manager-frontend.onrender.com/user/profile`, { withCredentials: true });
+      const response = await axios.get(`https://p-manager-backend.onrender.com/user/profile`, { withCredentials: true });
 
-      console.log("Request body:", res.data);
+      console.log("Get Profile API Response:", response.data);
       
-      return res.data;
+      return response.data;
     } catch (error) {
-      throw error.red.data;
+      throw error.response.data;
     }
   },
 
@@ -23,12 +23,12 @@ getProfile: async () => {
 
       console.log("Request body:", data);
 
-      const response = await axios.post(`https://p-manager-frontend.onrender.com/user/profile`, data, { withCredentials: true });
+      const response = await axios.post(`https://p-manager-backend.onrender.com/user/profile`, data, { withCredentials: true });
       
       console.log("API Response:", response.data, data  );
 
       if (response.data.success) {
-          axios.post(`https://p-manager-frontend.onrender.com/user/profile`, data, { withCredentials: true }); // return response;
+          axios.post(`https://p-manager-backend.onrender.com/user/profile`, data, { withCredentials: true }); // return response;
       }
     
     } catch (error) {
@@ -41,7 +41,7 @@ getProfile: async () => {
   // Upload user profile image
   uploadProfileImage: async (formData) => {
     try {
-      const response = await axios.post("https://p-manager-frontend.onrender.com/user/profile-image", formData, {withCredentials: true,});
+      const response = await axios.post("https://p-manager-backend.onrender.com/user/profile-image", formData, {withCredentials: true,});
 
       if (response.data.success) {
         return response.data;
