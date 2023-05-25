@@ -230,20 +230,6 @@ form textarea{
     color: #000;
 }
 
-.close {
-    color: var(--white-black-color);
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: var(--primary-hover-color);
-}
-
 .button {
   padding: 5px 8px !important;
 }

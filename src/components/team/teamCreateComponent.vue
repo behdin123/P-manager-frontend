@@ -122,14 +122,4 @@ const handleCreateTeam = async () => {
     background-color: var(--primary-hover-color);
     color: #000;
 }
-
-.close {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
 </style>

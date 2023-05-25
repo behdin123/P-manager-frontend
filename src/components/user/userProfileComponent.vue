@@ -317,25 +317,6 @@ const updateAndClose = async () => {
   padding-left: 6px;
 }
 
-
-
-.close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  text-decoration: none;
-  color: var(--tertiary-color);
-  cursor: pointer;
-  background: none;
-  border: none;
-  outline: none;
-}
-
-.close:hover {
-  color: var(--primary-hover-color);
-}
-
 .editing-toggle{
     margin-bottom: 30px;
 }

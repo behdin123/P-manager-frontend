@@ -191,17 +191,4 @@ let makeRouterWork = () => {
 .popup button:hover{
   background-color: var(--primary-hover-color);
 }
-
-.close-popup {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  text-decoration: none;
-  color: var(--tertiary-color);
-}
-
-.close-popup:hover {
-  color: var(--primary-hover-color);
-}
 </style>
