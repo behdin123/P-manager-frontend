@@ -104,9 +104,6 @@ updateProjectImage: async (projectId, updatedImage) => {
     formData.append('image', updatedImage, updatedImage.name);
 
     const response = await axios.patch(`https://project-m.dk/project/edit-projectImage/${projectId}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
       withCredentials: true,
     });
     return response.data;
