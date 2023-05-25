@@ -4,7 +4,7 @@ const taskApi = {
   
   createTask: async (taskData) => {
     try {
-      const response = await axios.post(`https://p-manager-backend.onrender.com/project/${taskData.projectId}/tasks/create`, taskData, { withCredentials: true });
+      const response = await axios.post(`https://project-m.dk/project/${taskData.projectId}/tasks/create`, taskData, { withCredentials: true });
       return response.data.task;
     } catch (error) {
       console.error('Failed to create task:', error);
@@ -14,7 +14,7 @@ const taskApi = {
 
   getTasksByColumn: async (projectId, columnId) => {
     try {
-      const response = await axios.get(`https://p-manager-backend.onrender.com/project/${projectId}/column/${columnId}/tasks`, { withCredentials: true });
+      const response = await axios.get(`https://project-m.dk/project/${projectId}/column/${columnId}/tasks`, { withCredentials: true });
   
       console.log("Response:", response);
   
@@ -27,7 +27,7 @@ const taskApi = {
 
   updateTask: async (taskId, projectId, taskData) => {
     try {
-      const response = await axios.put(`https://p-manager-backend.onrender.com/project/${projectId}/tasks/${taskId}/update`, taskData, { withCredentials: true });
+      const response = await axios.put(`https://project-m.dk/project/${projectId}/tasks/${taskId}/update`, taskData, { withCredentials: true });
       return response.data.task;
     } catch (error) {
       console.error('Failed to update task:', error);
@@ -37,7 +37,7 @@ const taskApi = {
 
   deleteTask: async (taskId, projectId) => {
     try {
-      await axios.delete(`https://p-manager-backend.onrender.com/project/${projectId}/tasks/${taskId}/delete`, { withCredentials: true });
+      await axios.delete(`https://project-m.dk/project/${projectId}/tasks/${taskId}/delete`, { withCredentials: true });
     } catch (error) {
       console.error('Failed to delete task:', error);
       throw error;
@@ -46,7 +46,7 @@ const taskApi = {
 
   updateTaskColumn: async (taskId, projectId, columnId) => {
     try {
-      const response = await axios.put(`https://p-manager-backend.onrender.com/project/${projectId}/tasks/${taskId}/update-column`, { columnId }, { withCredentials: true });
+      const response = await axios.put(`https://project-m.dk/project/${projectId}/tasks/${taskId}/update-column`, { columnId }, { withCredentials: true });
       console.log('updateTaskColumn response:', response);  
       return response.data.task;
     } catch (error) {

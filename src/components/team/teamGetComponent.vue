@@ -9,7 +9,7 @@
           </div>
           <div class="user-information-container">
             <div class="user-information" v-for="user in team.users" :key="user._id">
-              <img :src="`https://p-manager-backend.onrender.com/${user.profile_image}`" alt="Profile Picture" class="user-short__img">
+              <img :src="`https://project-m.dk/${user.profile_image}`" alt="Profile Picture" class="user-short__img">
               <b>{{ user.first_name }}</b>
               <b>{{ user.last_name }}</b>
             </div>

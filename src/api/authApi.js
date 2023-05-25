@@ -6,7 +6,7 @@ export default {
 // Register a new user
 register: async (data) => {
     try {
-      const response = await axios.post(`https://p-manager-backend.onrender.com/auth/register`, data);  
+      const response = await axios.post(`https://project-m.dk/auth/register`, data);  
      
       return response;
 
@@ -18,7 +18,7 @@ register: async (data) => {
   // Login a user
   login: async (data) => {
     try {
-      const response = await axios.post(`https://p-manager-backend.onrender.com/auth/login`, data);  //${BASE_URL}
+      const response = await axios.post(`https://project-m.dk/auth/login`, data);  //${BASE_URL}
       console.log("Received cookie:", document.cookie);
       return response;
 
