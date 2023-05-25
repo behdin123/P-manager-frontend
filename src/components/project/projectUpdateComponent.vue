@@ -46,7 +46,7 @@
           <button v-else class="button button-color" @click="removeProjectAndClose">Remove</button>
   
         <!-- Close button -->
-        <button class="close" @click="$emit('update-finished')">x</button>
+        <button class="close-popup" @click="$emit('update-finished')">x</button>
 
       </div>
 

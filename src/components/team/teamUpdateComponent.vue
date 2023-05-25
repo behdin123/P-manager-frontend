@@ -40,7 +40,7 @@
         <button v-else class="button button-color" @click="removeTeamhandler(team)">Remove</button>
   
         <!-- The close button -->
-        <button class="close" @click="close">x</button>
+        <button class="close-popup" @click="close">x</button>
       </div>
     </div>
   </template>

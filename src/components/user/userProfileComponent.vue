@@ -67,7 +67,7 @@
                     <button class="button Update-button" v-if="editing" @click="updateAndClose">Update Info</button>
 
                     <!-- The close button -->
-                    <button class="close" @click="showPopup = false">x</button>
+                    <button class="close-popup" @click="showPopup = false">x</button>
 
             </div>
         </div>

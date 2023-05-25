@@ -21,7 +21,7 @@
             <button class="button Update-button" @click="handleCreateTeam">Create Team</button>
 
             <!-- The close button -->
-            <button class="close" @click="$emit('close')">x</button>
+            <button class="close-popup" @click="$emit('close')">x</button>
 
         </div>
 

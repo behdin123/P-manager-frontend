@@ -5,7 +5,7 @@
         <div class="task-create-popup-container" v-if="showTaskCreation">
             <div class="task-create-popup-content">
                 <h2>Create New Task</h2>
-                <span class="close" @click="closeTaskCreation">x</span>
+                <span class="close-popup" @click="closeTaskCreation">x</span>
                 <form class="task-create-popup" @submit.prevent="createTaskWrapper">
                     <input type="text" placeholder="Title" v-model="title" />
                     <textarea placeholder="Description" v-model="description"></textarea>

@@ -27,7 +27,7 @@
             <button v-if="editMode" class="button Update-button" @click="updateAndCloseWrapper">Update Task</button>
 
             <!-- Close button -->
-            <button class="close" @click="$emit('close')">x</button>
+            <button class="close-popup" @click="$emit('close')">x</button>
 
             <button v-if="!editMode" class="button button-remove" @click="RemoveAndCloseWrapper">Delete Task</button>
 
