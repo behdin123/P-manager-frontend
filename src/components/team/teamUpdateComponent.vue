@@ -50,12 +50,16 @@ import { ref, defineProps, defineEmits } from 'vue';
 import { updateTeam } from '../../modules/Crud_operator/team/teamUpdateCrud';
 import { removeTeamById } from '../../modules/Crud_operator/team/teamRemoveCrud';
 
+import {
+  refreshTeams
+} from '../../modules/Main_logic/Team';
+
 
 const props = defineProps({
   team: Object,
 });
 
-const emit = defineEmits(['team-updated', 'close']);
+const emit = defineEmits(['close']);
 
 const usernames = ref('');
 
@@ -64,7 +68,7 @@ const updateTeamhandler = async () => {
   const isSuccess = await updateTeam(updatedTeam._id, updatedTeam);
   if (isSuccess) {
     close();
-    emit('team-updated');
+    refreshTeams();
   }
 };
 

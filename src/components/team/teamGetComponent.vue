@@ -52,16 +52,10 @@ onMounted(async () => {
   await getTeams();
 });
 
-const shouldRefreshTeams = ref(false);
-
-watchEffect(() => {
+/* watchEffect(() => {
   const updatedTeams = [...teams.value];
   teams.value = updatedTeams;
-  if (shouldRefreshTeams.value) {
-    refreshTeams();
-    shouldRefreshTeams.value = false;
-  }
-});
+}); */
 
 const selectedTeam = ref(null);
 

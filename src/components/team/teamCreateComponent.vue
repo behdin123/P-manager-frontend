@@ -39,12 +39,16 @@ import {
 
 import { ref, defineProps, defineEmits } from 'vue';
 
+import {
+  refreshTeams
+} from '../../modules/Main_logic/Team';
+
 // Define 'showTeamCreation' prop
 const props = defineProps({
   showTeamCreation: Boolean,
 });
 
-const emit = defineEmits(['close', 'team-created']);
+const emit = defineEmits(['close']);
 
 // Ref for save usernames as string
 let usernames = ref('');
@@ -55,7 +59,7 @@ const handleCreateTeam = async () => {
   const isSuccess = await createTeam();
   if (isSuccess) {
     emit('close'); // Close the popup if the team was created successfully
-    emit('team-created');
+    refreshTeams();
   }
 };
 
