@@ -77,7 +77,6 @@ async function submitRegister() {
   // If input is valid, make an API request to register user
   if (validationResult == true) {
     try {
-      console.log("Request body:", validationResult);
       await api.register({
         username: registerUsername.value,
         mobile: registerMobile.value,

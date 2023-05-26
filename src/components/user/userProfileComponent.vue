@@ -183,7 +183,7 @@ try {
   // Call the API to upload the profile image
   const response = await api.uploadProfileImage(formData);
 
-  console.log('Upload response:', response);
+  /* console.log('Upload response:', response); */
 
   // Create a blob URL
   let blobURL = URL.createObjectURL(croppedImage);

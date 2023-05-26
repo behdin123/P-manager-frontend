@@ -9,7 +9,7 @@ getProfile: async () => {
 
       const response = await axios.get(`https://project-m.dk/user/profile`, { withCredentials: true });
 
-      console.log("Get Profile API Response:", response.data);
+      /* console.log("Get Profile API Response:", response.data); */
       
       return response.data;
     } catch (error) {
@@ -21,11 +21,11 @@ getProfile: async () => {
   updateUserInfo: async (data) => {
     try {
 
-      console.log("Request body:", data);
+      /* console.log("Request body:", data); */
 
       const response = await axios.post(`https://project-m.dk/user/profile`, data, { withCredentials: true });
       
-      console.log("API Response:", response.data, data  );
+      /* console.log("API Response:", response.data, data  ); */
 
       if (response.data.success) {
           axios.post(`https://project-m.dk/user/profile`, data, { withCredentials: true }); // return response;

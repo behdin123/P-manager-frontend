@@ -72,16 +72,16 @@ const { id: projectId } = useRoute().params;
 onMounted(async () => {
   await fetchProject(projectId);
   await fetchColumns(projectId);
-  console.log('columns:', columns.value);
+  /* console.log('columns:', columns.value); */
 });
 
 watchEffect(() => {
-  console.log('Columns changed:', columns.value);
+  /* console.log('Columns changed:', columns.value); */
 });
 
 
 const dropEvent = (event, projectId, columnId) => {
-  console.log("Drop event in Vue component: ", event);
+  /* console.log("Drop event in Vue component: ", event); */
   drop(projectId, columnId, event);
 };
 

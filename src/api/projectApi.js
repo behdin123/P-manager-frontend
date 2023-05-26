@@ -58,7 +58,7 @@ getProjectById: async (projectId) => {
 getColumnsByProject: async (projectId) => {
   try {
     const response = await axios.get(`https://project-m.dk/project/${projectId}/columns`, { withCredentials: true });
-    console.log('API response:', response.data); // se if the response.data contains the correct values
+    /* console.log('API response:', response.data); // se if the response.data contains the correct values */
     return response.data;
 
   } catch (error) {

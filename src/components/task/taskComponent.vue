@@ -96,7 +96,7 @@ const createTaskWrapper = async () => {
 
   // Check if newTask is successfully created
   if (newTask) {
-  console.log("newTask:", newTask);
+  /* console.log("newTask:", newTask); */
 
   // Update local state only when backend operation is successful
   await fetchTasksForColumns(props.projectId, [selectedColumnId.value]);

@@ -79,7 +79,7 @@ const props = defineProps({
 
 watchEffect(() => {
   const newProject = props.project;
-  console.log("New project in watchEffect:", newProject);
+  /* console.log("New project in watchEffect:", newProject); */
   if (newProject) {
     Object.assign(updatedProject.value, newProject);
     tagsInput.value = newProject.tags.join(', ');

@@ -196,6 +196,10 @@ a:link {
   margin-right: 110px;
 }
 
+.user-short :hover{
+  opacity: 0.5;
+}
+
 .user-short__img {
   width: 2rem;
   height: 2rem;

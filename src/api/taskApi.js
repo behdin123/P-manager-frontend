@@ -16,7 +16,7 @@ const taskApi = {
     try {
       const response = await axios.get(`https://project-m.dk/project/${projectId}/column/${columnId}/tasks`, { withCredentials: true });
   
-      console.log("Response:", response);
+      /* console.log("Response:", response); */
   
       return response.data;
     } catch (error) {
@@ -47,7 +47,7 @@ const taskApi = {
   updateTaskColumn: async (taskId, projectId, columnId) => {
     try {
       const response = await axios.put(`https://project-m.dk/project/${projectId}/tasks/${taskId}/update-column`, { columnId }, { withCredentials: true });
-      console.log('updateTaskColumn response:', response);  
+      /* console.log('updateTaskColumn response:', response);   */
       return response.data.task;
     } catch (error) {
       console.error('Failed to update task column:', error);

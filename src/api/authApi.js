@@ -19,7 +19,7 @@ register: async (data) => {
   login: async (data) => {
     try {
       const response = await axios.post(`https://project-m.dk/auth/login`, data, { withCredentials: true });  //${BASE_URL}
-      console.log("Received cookie:", document.cookie);
+  
       return response;
 
     } catch (error) {
