@@ -13,10 +13,10 @@
         <div class="line"></div>
 
         <!-- Reading all the teams for the current user - component -->
-        <teamGetComponent  :refresh-teams="refreshTeams"/>
+        <teamGetComponent />
 
         <!-- team creating popup - component -->
-        <teamCreateComponent :showTeamCreation="showTeamCreation" @close="showTeamCreation = false" @team-created="refreshTeams"/>
+        <teamCreateComponent :showTeamCreation="showTeamCreation" @close="showTeamCreation = false" />
 
     </div>
 
@@ -27,8 +27,6 @@ import teamGetComponent from '../components/team/teamGetComponent.vue';
 import teamCreateComponent from '../components/team/teamCreateComponent.vue';
 
 import { ref } from 'vue';
-
-import { refreshTeams } from '../modules/Main_logic/Team';
 
 let showTeamCreation = ref(false);
 
