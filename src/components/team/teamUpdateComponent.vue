@@ -54,6 +54,10 @@ import {
   refreshTeams
 } from '../../modules/Main_logic/Team';
 
+import {
+    getTeams
+} from '../../modules/Crud_operator/team/teamGetCrud';
+
 
 const props = defineProps({
   team: Object,
