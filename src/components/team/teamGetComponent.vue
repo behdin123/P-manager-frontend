@@ -27,8 +27,6 @@
     <teamUpdateComponent 
     v-if="selectedTeam" 
     :team="selectedTeam" 
-    @team-updated="refreshTeams"
-    @team-deleted="refreshTeams"
     @close="closeEditPopup" 
     />
 
@@ -36,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watchEffect } from 'vue';
+import { ref, onMounted } from 'vue';
 import teamUpdateComponent from './teamUpdateComponent.vue';
 
 import {
@@ -44,19 +42,9 @@ import {
     teams
 } from '../../modules/Crud_operator/team/teamGetCrud';
 
-import {
-  refreshTeams
-} from '../../modules/Main_logic/Team';
-
 onMounted(async () => {
   await getTeams();
 });
-
-/* watchEffect(() => {
-  const updatedTeams = [...teams.value];
-  teams.value = updatedTeams;
-}); */
-
 const selectedTeam = ref(null);
 
 const showEditPopup = (team) => {
