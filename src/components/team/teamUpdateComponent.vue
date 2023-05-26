@@ -51,10 +51,6 @@ import { updateTeam } from '../../modules/Crud_operator/team/teamUpdateCrud';
 import { removeTeamById } from '../../modules/Crud_operator/team/teamRemoveCrud';
 
 import {
-  refreshTeams
-} from '../../modules/Main_logic/Team';
-
-import {
     getTeams
 } from '../../modules/Crud_operator/team/teamGetCrud';
 
@@ -73,10 +69,12 @@ const usernames = ref('');
 
 const updateTeamhandler = async () => {
   const updatedTeam = { ...props.team, users: usernames.value.split(',').map((username) => username.trim()) };
-  const isSuccess = await updateTeam(updatedTeam._id, updatedTeam);
-  if (isSuccess) {
+  if (updatedTeam) {
+    const isSuccess = await updateTeam(updatedTeam._id, updatedTeam);
     close();
-    refreshTeams();
+    if (isSuccess) {
+      getTeams(); // Refresh the teams list
+    }
   }
 };
 
