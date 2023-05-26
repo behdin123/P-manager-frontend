@@ -36,12 +36,11 @@ import {
     newTeam
 } from '../../modules/Crud_operator/team/teamCreateCrud';
 
-
 import { ref, defineProps, defineEmits } from 'vue';
 
 import {
-  refreshTeams
-} from '../../modules/Main_logic/Team';
+    getTeams
+} from '../../modules/Crud_operator/team/teamGetCrud';
 
 // Define 'showTeamCreation' prop
 const props = defineProps({
@@ -59,7 +58,7 @@ const handleCreateTeam = async () => {
   const isSuccess = await createTeam();
   if (isSuccess) {
     emit('close'); // Close the popup if the team was created successfully
-    refreshTeams();
+    getTeams(); // Refresh the teams list
   }
 };
 
