@@ -61,6 +61,10 @@ const props = defineProps({
 
 const emit = defineEmits(['close']);
 
+const close = () => {
+  emit('close');
+};
+
 const usernames = ref('');
 
 const updateTeamhandler = async () => {
@@ -72,16 +76,11 @@ const updateTeamhandler = async () => {
   }
 };
 
-const close = () => {
-  emit('close');
-};
-
 const removeTeamhandler = async (team) => {
   const confirmDelete = confirm('Are you sure you want to delete this team?');
   if (confirmDelete) {
     const isSuccess = await removeTeamById(team._id);
     close();
-    emit('team-updated');
     if (isSuccess) {
       getTeams(); // Refresh the teams list
     }
@@ -89,6 +88,7 @@ const removeTeamhandler = async (team) => {
 };
 
 
+// logic for changing to edit mode in update popup
 const editMode = ref(false);
 const buttonText = ref('Switch to Edit Mode');
 

@@ -45,6 +45,8 @@ import {
 onMounted(async () => {
   await getTeams();
 });
+
+
 const selectedTeam = ref(null);
 
 const showEditPopup = (team) => {
@@ -54,6 +56,7 @@ const showEditPopup = (team) => {
 const closeEditPopup = () => {
   selectedTeam.value = null;
 };
+
 </script>
 
 
