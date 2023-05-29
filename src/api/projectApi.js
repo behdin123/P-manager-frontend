@@ -85,9 +85,6 @@ removeProject: async (id) => {
 updateProject: async (projectId, updatedProject) => {
   try {
     const response = await axios.put(`https://project-m.dk/project/edit/${projectId}`, updatedProject, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
       withCredentials: true,
     });
     return response.data;

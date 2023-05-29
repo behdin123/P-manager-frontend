@@ -102,7 +102,7 @@ import {
 
 /*
 * composition function useRouterCustom(), which creates an instance of the router and 
-* then exports an openProject function that uses this instance to navigate to the 
+* then makes an openProject function that uses this instance to navigate to the 
 * ProjectBoard page.
 */
 const useRouterCustom = () => {
@@ -117,9 +117,7 @@ const useRouterCustom = () => {
     openProject
   }
 }
-
 const { openProject } = useRouterCustom();
-
 
 
 
@@ -127,15 +125,20 @@ const { openProject } = useRouterCustom();
 * Logic that is defined in watch and onMounted
 */
 
-// watch: when showprojectCreation is getting closed, then it calls the fetchprojects function to get the updated list of projects
+/* 
+* watch: when showprojectCreation is getting closed, then it calls 
+* the fetchprojects function to get the updated list of projects
+*/
 watch(showProjectCreation, async (newValue, oldValue) => {
     if (!newValue && oldValue) {
       await fetchProjects();
     }
   });
 
-
-// onMounted: When the component is mounted, fetchProjects function is called to fetch a list of projects to show in HomeView.vue
+/* 
+* onMounted: When the component is mounted, fetchProjects function is called 
+* to fetch a list of projects to show in HomeView.vue
+*/
   onMounted(async () => {
     await fetchProjects();
   });
@@ -146,6 +149,7 @@ const props = defineProps({
 });
 
 </script>
+
 
 
 
