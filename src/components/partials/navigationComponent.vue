@@ -61,14 +61,14 @@ const props = defineProps({
   toggleDarkMode: Function,
 });
 
-/* const router = useRouter();
+const router = useRouter();
 
 //checking if the user is logged out then it should be send back to the frontpage
 watch(isLoggedIn, (newIsLoggedIn) => {
   if (!newIsLoggedIn) {
     router.push('/');
   }
-}); */
+});
 
 
 </script>
