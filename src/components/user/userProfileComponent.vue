@@ -64,6 +64,9 @@
                     </label>
                 </div>
 
+                <!-- Error message -->
+                <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+
                     <button class="button Update-button" v-if="editing" @click="updateAndClose">Update Info</button>
 
                     <!-- The close button -->
@@ -76,7 +79,7 @@
 </template>
 
 <script setup>
-import { ref, nextTick, onUnmounted, computed } from 'vue';
+import { ref, onUnmounted, computed } from 'vue';
 import api from '../../api/userApi.js';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
@@ -102,6 +105,7 @@ const editing = ref(false);
 const toggleEditing = () => {
     editing.value = !editing.value;
 };
+
 
 
 const showCropper = ref(false);
@@ -179,6 +183,8 @@ const formData = new FormData();
 croppedImage.name = "profile_image.jpg";
 formData.append('image', croppedImage, croppedImage.name);
 
+const errorMessage = ref('');
+
 try {
 
   // Call the API to upload the profile image
@@ -188,6 +194,9 @@ try {
 
   // Create a blob URL
   let blobURL = URL.createObjectURL(croppedImage);
+
+  // Clear the error message
+  errorMessage.value = '';
 
   // Set profile image value
   profile_image.value = blobURL;
@@ -263,6 +272,11 @@ const updateAndClose = async () => {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
 }
 
 .popup__content {
