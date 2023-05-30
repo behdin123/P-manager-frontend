@@ -26,7 +26,7 @@
         </div>
 
         <label class="switch">
-          <input @click="toggleDarkMode" type="checkbox"/>
+          <input v-model="darkMode" type="checkbox"/>
           <span class="slider round"></span>
         </label>
 
@@ -58,7 +58,7 @@ const props = defineProps({
     type: Boolean,
     required: false,
   },
-  toggleDarkMode: Function,
+  darkMode: Boolean,
 });
 
 const router = useRouter();
