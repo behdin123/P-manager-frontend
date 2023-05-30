@@ -26,7 +26,7 @@
         </div>
 
         <label class="switch">
-          <input v-model="toggleDarkMode" type="checkbox"/>
+          <input @click="toggleDarkMode" type="checkbox"/>
           <span class="slider round"></span>
         </label>
 
