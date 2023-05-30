@@ -167,7 +167,7 @@ const cropImage = async () => {
 // Getting the cropped image
 const croppedCanvas = cropper.getCroppedCanvas();
 // save the cropped image URL as a jpeg with 70% quality, to reduce the size
-const dataUrl = croppedCanvas.toDataURL('image/jpeg', 0.7);
+const dataUrl = croppedCanvas.toDataURL('image/jpeg');
 
 const response = await fetch(dataUrl);
 const croppedImage = await response.blob();
