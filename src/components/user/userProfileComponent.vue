@@ -166,6 +166,7 @@ const cropImage = async () => {
 
 // Getting the cropped image
 const croppedCanvas = cropper.getCroppedCanvas();
+
 // save the cropped image URL as a jpeg with 70% quality, to reduce the size
 const dataUrl = croppedCanvas.toDataURL('image/jpeg');
 
@@ -194,7 +195,7 @@ try {
 } catch (error) {
   console.error('Error uploading profile image:', error);
 
-  if (croppedImage.size > 2 * 2024*2024) {
+  if (croppedImage.size > 4 * 2024*2024) {
     errorMessage.value = 'Image size should be less than 4 MB.';
   } else {
     // Set a general error message for other errors
