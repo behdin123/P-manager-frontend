@@ -104,6 +104,7 @@ updateProjectImage: async (projectId, updatedImage) => {
       withCredentials: true,
     });
     return response.data;
+    
   } catch (error) {
     console.error('Failed to update project image:', error);
     throw error.response.data;

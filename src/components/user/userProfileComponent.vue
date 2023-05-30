@@ -193,6 +193,13 @@ try {
   showCropper.value = false;
 } catch (error) {
   console.error('Error uploading profile image:', error);
+
+  if (croppedImage.size > 4 * 1024 * 1024) {
+    errorMessage.value = 'Image size should be less than 4 MB.';
+  } else {
+    // Set a general error message for other errors
+    errorMessage.value = 'Error uploading profile image. Please try again.';
+  }
 }
 cropper.destroy();
 cropper = null;
