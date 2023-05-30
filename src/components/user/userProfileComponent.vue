@@ -195,8 +195,8 @@ try {
 } catch (error) {
   console.error('Error uploading profile image:', error);
 
-  if (croppedImage.size > 4 * 2024*2024) {
-    errorMessage.value = 'Image size should be less than 4 MB.';
+  if (croppedImage.size > 2 * 1024*1024) {
+    errorMessage.value = 'Image size should be less than 2 MB.';
   } else {
     // Set a general error message for other errors
     errorMessage.value = 'Error uploading profile image. Please try again.';
