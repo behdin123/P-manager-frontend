@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-import { ref, nextTick, onUnmounted, computed } from 'vue';
+import { ref, onUnmounted, computed } from 'vue';
 import api from '../../api/userApi.js';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';

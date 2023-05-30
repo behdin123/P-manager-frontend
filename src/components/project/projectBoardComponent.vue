@@ -72,7 +72,6 @@ const { id: projectId } = useRoute().params;
 onMounted(async () => {
   await fetchProject(projectId);
   await fetchColumns(projectId);
-  /* console.log('columns:', columns.value); */
 });
 
 watchEffect(() => {

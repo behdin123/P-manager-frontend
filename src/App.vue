@@ -32,7 +32,7 @@ onMounted(() => {
 });
 
 //Dark Mode
-const darkMode = ref(false);
+const darkMode = ref(JSON.parse(localStorage.getItem('darkMode')) || false);
 
 watchEffect(() => {
   localStorage.setItem('darkMode', JSON.stringify(darkMode.value));

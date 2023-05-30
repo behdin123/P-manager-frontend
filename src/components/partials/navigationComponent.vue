@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, watch} from 'vue';
+import { defineProps, watch} from 'vue';
 import { RouterLink } from 'vue-router';
 import LoginComponent from '../user/loginComponent.vue';
 import UserProfileComponent from '../user/userProfileComponent.vue';
@@ -63,7 +63,7 @@ const props = defineProps({
 
 const router = useRouter();
 
-//checking if the user is logged out then it should be send back to the frontpage
+//checking if the user is logged out, then it should be send back to the frontpage
 watch(isLoggedIn, (newIsLoggedIn) => {
   if (!newIsLoggedIn) {
     router.push('/');
