@@ -64,9 +64,6 @@
                     </label>
                 </div>
 
-                <!-- Error message -->
-                <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
-
                     <button class="button Update-button" v-if="editing" @click="updateAndClose">Update Info</button>
 
                     <!-- The close button -->
@@ -79,7 +76,7 @@
 </template>
 
 <script setup>
-import { ref, onUnmounted, computed } from 'vue';
+import { ref, nextTick, onUnmounted, computed } from 'vue';
 import api from '../../api/userApi.js';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.css';
@@ -105,7 +102,6 @@ const editing = ref(false);
 const toggleEditing = () => {
     editing.value = !editing.value;
 };
-
 
 
 const showCropper = ref(false);
@@ -170,9 +166,8 @@ const cropImage = async () => {
 
 // Getting the cropped image
 const croppedCanvas = cropper.getCroppedCanvas();
-
 // save the cropped image URL as a jpeg with 70% quality, to reduce the size
-const dataUrl = croppedCanvas.toDataURL('image/jpeg');
+const dataUrl = croppedCanvas.toDataURL('image/jpeg', 0.7);
 
 const response = await fetch(dataUrl);
 const croppedImage = await response.blob();
@@ -182,8 +177,6 @@ const croppedImage = await response.blob();
 const formData = new FormData();
 croppedImage.name = "profile_image.jpg";
 formData.append('image', croppedImage, croppedImage.name);
-
-const errorMessage = ref('');
 
 try {
 
@@ -195,21 +188,11 @@ try {
   // Create a blob URL
   let blobURL = URL.createObjectURL(croppedImage);
 
-  // Clear the error message
-  errorMessage.value = '';
-
   // Set profile image value
   profile_image.value = blobURL;
   showCropper.value = false;
 } catch (error) {
   console.error('Error uploading profile image:', error);
-
-  if (croppedImage.size > 2 * 1024*1024) {
-    errorMessage.value = 'Image size should be less than 2 MB.';
-  } else {
-    // Set a general error message for other errors
-    errorMessage.value = 'Error uploading profile image. Please try again.';
-  }
 }
 cropper.destroy();
 cropper = null;
@@ -272,11 +255,6 @@ const updateAndClose = async () => {
   justify-content: center;
   align-items: center;
   z-index: 9999;
-}
-
-.error-message {
-  color: red;
-  margin-top: 10px;
 }
 
 .popup__content {
